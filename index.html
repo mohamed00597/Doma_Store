@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>متجرنا الإلكتروني</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <img id="splash-logo" src="" alt="Logo">
+            <h1 id="splash-title"></h1>
+            <div class="splash-animation">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display: none;">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="logo">
+                <img id="header-logo" src="" alt="Logo">
+                <span id="header-title"></span>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn" onclick="showFavorites()">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="fav-count">0</span>
+                </button>
+                <button class="icon-btn" onclick="showCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Hero Slider -->
+        <section class="hero-slider" id="hero-slider">
+            <!-- Dynamic slides -->
+        </section>
+
+        <!-- Sections -->
+        <section class="sections-container" id="sections-container">
+            <!-- Dynamic sections -->
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-section">
+            <h2 class="section-title">منتجاتنا</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Dynamic products -->
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="contact-info">
+                    <h3>تواصل معنا</h3>
+                    <a id="whatsapp-link" href="#" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <span id="whatsapp-number"></span>
+                    </a>
+                </div>
+                <div class="social-links">
+                    <a id="facebook-link" href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a id="instagram-link" href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة © 2026</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content product-modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="product-gallery">
+                <div class="main-image">
+                    <img id="modal-main-image" src="" alt="">
+                </div>
+                <div class="thumbnail-list" id="modal-thumbnails"></div>
+            </div>
+            <div class="product-details">
+                <h2 id="modal-product-name"></h2>
+                <div class="price-section">
+                    <span class="old-price" id="modal-old-price"></span>
+                    <span class="current-price" id="modal-current-price"></span>
+                </div>
+                <div class="options-section" id="modal-colors-section">
+                    <label>اللون:</label>
+                    <div class="color-options" id="modal-colors"></div>
+                </div>
+                <div class="options-section" id="modal-sizes-section">
+                    <label>المقاس:</label>
+                    <div class="size-options" id="modal-sizes"></div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-fav" onclick="toggleFavorite()">
+                        <i class="far fa-heart"></i> المفضلة
+                    </button>
+                    <button class="btn-cart" onclick="addToCart()">
+                        <i class="fas fa-shopping-cart"></i> أضف للسلة
+                    </button>
+                    <button class="btn-order" onclick="quickOrder()">
+                        <i class="fas fa-bolt"></i> اطلب الآن
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Order Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content order-modal-content">
+            <button class="close-btn" onclick="closeOrderModal()">&times;</button>
+            <h2>إتمام الطلب</h2>
+            <form id="order-form">
+                <div class="form-group">
+                    <label>الاسم الكامل *</label>
+                    <input type="text" id="order-name" required>
+                </div>
+                <div class="form-group">
+                    <label>رقم التليفون *</label>
+                    <input type="tel" id="order-phone" required>
+                </div>
+                <div class="form-group">
+                    <label>العنوان الكامل *</label>
+                    <textarea id="order-address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>ملاحظات</label>
+                    <textarea id="order-notes" rows="2"></textarea>
+                </div>
+                <div class="order-summary" id="order-summary"></div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-complete">إتمام الطلب</button>
+                    <button type="button" class="btn-continue" onclick="closeOrderModal()">استكمال التسوق</button>
+                    <button type="button" class="btn-cancel" onclick="cancelOrder()">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content cart-modal-content">
+            <button class="close-btn" onclick="closeCartModal()">&times;</button>
+            <h2>سلة المشتريات</h2>
+            <div id="cart-items"></div>
+            
+                <div class="cart-coupon" id="cart-coupon-section" style="display: none;">
+                    <div class="coupon-input-group">
+                        <input type="text" id="coupon-input" placeholder="أدخل كود الكوبون">
+                        <button id="coupon-btn" onclick="applyCoupon()">تطبيق</button>
+                    </div>
+                    <div id="coupon-message"></div>
+                </div>
+                <div class="cart-total">
+                <span>الإجمالي:</span>
+                <span id="cart-total-price">0 ج.م</span>
+            </div>
+            <button class="btn-complete" onclick="checkoutFromCart()">إتمام الشراء</button>
+        </div>
+    </div>
+
+    <!-- Favorites Modal -->
+    <div id="fav-modal" class="modal">
+        <div class="modal-content fav-modal-content">
+            <button class="close-btn" onclick="closeFavModal()">&times;</button>
+            <h2>المفضلة</h2>
+            <div id="fav-items"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
